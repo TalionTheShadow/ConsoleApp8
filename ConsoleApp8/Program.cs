@@ -34,6 +34,21 @@ namespace ConsoleApp8
                 }
 
                 Console.WriteLine();
+
+                PrintCount();
+            }
+
+            static void PrintCount()
+            {
+                Console.Write("1");
+
+                int count = 2;
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                    Console.Write("\r{0}", count);
+                    count++;
+                }
             }
 
         }
