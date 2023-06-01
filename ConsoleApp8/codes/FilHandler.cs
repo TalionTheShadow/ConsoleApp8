@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp8.codes
 {
-    internal class FilHandler 
+    internal class FilHandler
     {
-        public bool CreateFile()
+        public void CreateFile()
         {
-            bool success = true;
-
             try
             {
                 string myUserFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -19,10 +17,32 @@ namespace ConsoleApp8.codes
             }
             catch (Exception)
             {
+                Console.WriteLine("Error creating file.");
+            }
+        }
+
+        public bool CreateFile(string fileName, string content)
+        {
+            bool success = true;
+
+            try
+            {
+                string myUserFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                string filePath = Path.Combine(myUserFolder, fileName);
+
+                File.WriteAllText(filePath, content);
+            }
+            catch (Exception)
+            {
                 success = false;
             }
-
             return success;
+        }
+
+        public string GetUserFolder()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         }
     }
 }
+
