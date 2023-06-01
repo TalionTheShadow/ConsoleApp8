@@ -7,14 +7,13 @@ namespace ConsoleApp8
         static void Main(string[] args)
         {
             FilHandler filHandler = new();
-            filHandler.CreateFile();
+            
 
             while (true)
             {
                 Console.WriteLine("Menu:");
-                Console.WriteLine("1. Create File");
-                Console.WriteLine("2. Show user folder URL");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("1. Show user folder");
+                Console.WriteLine("2. Exit");
 
                 Console.Write("Enter your choice: ");
                 string choice = Console.ReadLine();
@@ -22,25 +21,11 @@ namespace ConsoleApp8
                 switch (choice)
                 {
                     case "1":
-                        Console.Write("Enter the file name: ");
-                        string fileName = Console.ReadLine();
-                        Console.Write("Enter the content: ");
-                        string content = Console.ReadLine();
-
-                        bool success = filHandler.CreateFile(fileName, content);
-
-                        if (success)
-                            Console.WriteLine("File created successfully.");
-                        else
-                            Console.WriteLine("Error creating file.");
+                        string userFolder = filHandler.GetUserFolder();
+                        Console.WriteLine("User folder: " + userFolder);
                         break;
 
                     case "2":
-                        string userFolder = filHandler.GetUserFolder();
-                        Console.WriteLine("User folder URL: " + userFolder);
-                        break;
-
-                    case "3":
                         return;
 
                     default:
@@ -50,6 +35,7 @@ namespace ConsoleApp8
 
                 Console.WriteLine();
             }
+
         }
     }
 }
